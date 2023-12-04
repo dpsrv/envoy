@@ -1,0 +1,18 @@
+services:
+  envoy:
+    build: .
+    image: dpsrv/envoy
+    container_name: envoy
+    env_file: ${DPSRV_HOME}/rc/secrets/envoy/envoy.env
+    ports:
+      - "50180:80"
+      - "50543:443"
+    volumes:
+      - ${DPSRV_HOME}/rc/secrets/envoy/envoy.tml:/etc/envoy.yml:ro
+      - ${DPSRV_HOME}/rc/secrets/letsencrypt/:/etc/letsencrypt/:ro
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+networks:
+  default:
+    name: dpsrv
+    external: true
