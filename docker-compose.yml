@@ -1,5 +1,5 @@
 services:
-  envoy:
+  dpsrv-envoy:
     build: .
     image: dpsrv/envoy
     container_name: dpsrv-envoy
