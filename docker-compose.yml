@@ -1,8 +1,8 @@
 services:
   dpsrv-envoy:
+    container_name: dpsrv-envoy-${tag:-latest}
+    image: dpsrv/envoy:${tag:-latest}
     build: .
-    image: dpsrv/envoy
-    container_name: dpsrv-envoy
     env_file:
       - ${DPSRV_HOME}/rc/secrets/envoy/envoy.env
       - ${DPSRV_HOME}/rc/secrets/local/${HOSTNAME}/local.env
